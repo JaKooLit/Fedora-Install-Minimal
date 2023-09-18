@@ -2,12 +2,20 @@
 
 ## This is for Fedora minimal install
 
-### Carry out initial Step (prepare disk as per Prepare_disk
+- Download and Boot Fedora workstation
 
-### and then ran Step1.sh
+- Fedora Download Page - [`Link`](https://fedoraproject.org/workstation/download/)
 
-### then carry out Final_step
+- boot into Fedora Live, open tty and change to sudo by typing sudo -s
 
+- Carry out initial Step (prepare disk as per Prepare_disk
+
+- and then ran Step1.sh
+
+- then carry out Final_step
+
+### ✨ Roadmap:
+- [ ] Tweak more to fully automate (hopefully)
 
 
 ### ✨ Credits
