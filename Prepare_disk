@@ -26,8 +26,6 @@ btrfs su cr @opt
 
 btrfs su cr @var
 
-btrfs su cr @tmp
-
 btrfs su cr @snapshots - for snapper
 
 cd
