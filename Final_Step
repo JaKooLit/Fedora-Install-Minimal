@@ -1,0 +1,41 @@
+
+
+## rebuild grub
+rm /boot/efi/EFI/fedora/grub.cfg -y
+rm /boot/grub2/grub.cfg -y
+
+dnf reinstall -y shim-* grub2-efi-* grub2-common
+
+
+vi /etc/default/grub
+
+insert 
+
+GRUB_TIMEOUT=3
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUM_CMDLINE_LINUX="rhgb quiet"
+GRUB_DISABLE_RECOVERY="true"
+GRUB_ENABLE_BLSCFG=true
+
+
+efibootmgr -c -d /dev/XXXXX disk -p 1 -L "Fedora (Custom)" -l \\EFI\\FEDORA\\SHIMX64.EFI
+
+grub-mkconfig -o /boot/grub2/grub.cfg
+
+rm -f /etc/localtime
+systemd-firstboot --prompt
+
+
+# Answer accordingly
+
+# root password
+passwd 
+
+exit
+
+umount -n -R /mnt
+
+reboot

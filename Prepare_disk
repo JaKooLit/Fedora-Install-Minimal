@@ -1,0 +1,52 @@
+setenforce 0 - to disable selinux to not interfere with installation
+
+lsblk to show disk names
+
+create disk partitions as required
+
+/efi - fat 32
+/boot - ext4
+/root - btrfs 
+
+use cfdisk fdisk cgdisk or any to prepare disk
+
+mkfs.vfat /dev/boot-drive
+
+mkfs.btrfs /dev/root drive
+
+mount /dev/root /mnt
+
+cd /mnt
+
+btrfs su cr @
+
+btrfs su cr @home
+
+btrfs su cr @opt
+
+btrfs su cr @var
+
+btrfs su cr @tmp
+
+btrfs su cr @snapshots - for snapper
+
+cd
+
+umount /mnt
+
+mount -o noatime,compress=zstd:5,space_cache=v2,discard=async,subvol=@ /dev/root /mnt
+
+mkdir /mnt/{boot,home,var,opt,tmp,.snapshots}
+
+mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@home /dev/root /mnt/home
+
+mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@opt /dev/root /mnt/opt
+
+mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@var /dev/root /mnt/var
+
+mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@tmp /dev/root /mnt/tmp
+
+mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@snapshots /dev/root /mnt/.snapshots
+
+mount /dev/boot(drive) /mnt/boot
+
