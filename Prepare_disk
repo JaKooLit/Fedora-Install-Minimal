@@ -42,9 +42,11 @@ mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@opt /dev/r
 
 mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@var /dev/root /mnt/var
 
-mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@tmp /dev/root /mnt/tmp
-
 mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@snapshots /dev/root /mnt/.snapshots
 
 mount /dev/boot(drive) /mnt/boot
+
+mkdir /mnt/boot/efi
+
+mount /dev/efi(partition) /mnt/boot/efi
 
