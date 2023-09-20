@@ -1,0 +1,19 @@
+useradd -mG wheel <username desired>
+passwd <username>
+
+# to make dnf faster
+
+sudo nano /etc/dnf/dnf.conf
+
+add the following
+
+max_parallel_downloads=5 or 10
+fastestmirror=True
+defaultyes=True
+
+# to show available apps
+dnf list | less
+
+# to show available group install
+dnf grouplist | less
+dnf groupinstall -y "Fedora Workstation"
