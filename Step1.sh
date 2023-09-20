@@ -23,7 +23,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # chroot into system
 chroot /mnt /bin/bash
 mount -a
-mount -t efivars efivarfs /sys/firmware/efi/efivars
+mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 
 fixfiles -F onboot
 
