@@ -20,15 +20,18 @@ cp -L /etc/resolv.conf /mnt/etc
 dnf install -y arch-install-scripts
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# chroot into system
-chroot /mnt /bin/bash
+# Enter the chroot environment and execute subsequent commands
+chroot /mnt /bin/bash <<EOF
+
+# Commands to run within the chroot environment
 mount -a
 mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-
 fixfiles -F onboot
 
-# initial install
+# Initial install
 dnf install -y btrfs-progs efi-filesystem efibootmgr fwupd grub2-common grub2-efi-ia32 grub2-pc grub2-pc-modules grub2-tools grub2-tools-efi grub2-tools-extra grub2-tools-minimal grubby kernel mactel-boot mokutil shim-ia32 shim-x64
+
+EOF
 
 
 
