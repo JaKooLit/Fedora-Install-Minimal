@@ -34,7 +34,7 @@ umount /mnt
 
 mount -o noatime,compress=zstd:5,space_cache=v2,discard=async,subvol=@ /dev/root /mnt
 
-mkdir /mnt/{boot,home,var,opt,tmp,.snapshots}
+mkdir /mnt/{boot,home,var,opt,.snapshots}
 
 mount -o noatime,compress=zstd:5.space_cache=v2,discard=async,subvol=@home /dev/root /mnt/home
 
